@@ -4,9 +4,15 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 )
 
-func home(w http.ResponseWriter, r *http.Request) {
+type application struct {
+	infoLog  *log.Logger
+	errorLog *log.Logger
+}
+
+func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
 		return
@@ -14,26 +20,34 @@ func home(w http.ResponseWriter, r *http.Request) {
 
 	ts, err := template.ParseFiles("./ui/html/pages/index.tmpl")
 	if err != nil {
-		log.Print(err.Error())
+		app.errorLog.Print(err.Error())
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
 
 	err = ts.Execute(w, nil)
 	if err != nil {
-		log.Print(err.Error())
+		app.errorLog.Print(err.Error())
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 	}
 }
 
 func main() {
+	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
+	errorLog := log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime)
+
+	app := &application{
+		infoLog:  infoLog,
+		errorLog: errorLog,
+	}
+
 	mux := http.NewServeMux()
-	mux.HandleFunc("/", home)
+	mux.HandleFunc("/", app.home)
 	fileServer := http.FileServer(http.Dir("./ui/static/"))
 
 	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
 
-	log.Print("Starting server on :4000")
+	infoLog.Print("Starting server on :4000")
 	err := http.ListenAndServe(":4000", mux)
-	log.Fatal(err)
+	errorLog.Fatal(err)
 }
