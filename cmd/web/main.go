@@ -20,7 +20,8 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	ts, err := template.ParseFiles("./ui/html/pages/index.tmpl")
+	//pages, err := fs.Glob(ui.Files, "html/pages/*tmpl")
+	ts, err := template.ParseFS(ui.Files, "html/pages/index.tmpl")
 	if err != nil {
 		app.errorLog.Print(err.Error())
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
