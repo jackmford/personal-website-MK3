@@ -5,6 +5,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+
+	"jackmitchellfordyce.com/ui"
 )
 
 type application struct {
@@ -43,9 +45,12 @@ func main() {
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", app.home)
-	fileServer := http.FileServer(http.Dir("./ui/static/"))
+	//fileServer := http.FileServer(http.Dir("./ui/static/"))
 
-	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
+	fileServer := http.FileServer(http.FS(ui.Files))
+	mux.Handle("/static/*filepath", fileServer)
+
+	//mux.Handle("/static/", http.StripPrefix("/static", fileServer))
 
 	infoLog.Print("Starting server on :4000")
 	err := http.ListenAndServe(":4000", mux)
