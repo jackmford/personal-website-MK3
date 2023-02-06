@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/julienschmidt/httprouter"
 	"jackmitchellfordyce.com/ui"
 )
 
@@ -36,6 +37,8 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+
+	router := httprouter.New()
 	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
 	errorLog := log.New(os.Stderr, "ERROR\t", log.Ldate|log.Ltime)
 
@@ -44,16 +47,17 @@ func main() {
 		errorLog: errorLog,
 	}
 
-	mux := http.NewServeMux()
-	mux.HandleFunc("/", app.home)
+	//mux := http.NewServeMux()
 	//fileServer := http.FileServer(http.Dir("./ui/static/"))
 
 	fileServer := http.FileServer(http.FS(ui.Files))
-	mux.Handle("/static/*filepath", fileServer)
+	router.Handler(http.MethodGet, "/static/*filepath", fileServer)
+
+	router.HandlerFunc(http.MethodGet, "/", app.home)
 
 	//mux.Handle("/static/", http.StripPrefix("/static", fileServer))
 
 	infoLog.Print("Starting server on :4000")
-	err := http.ListenAndServe(":4000", mux)
+	err := http.ListenAndServe(":4000", router)
 	errorLog.Fatal(err)
 }
