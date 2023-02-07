@@ -21,7 +21,6 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	//pages, err := fs.Glob(ui.Files, "html/pages/*tmpl")
 	ts, err := template.ParseFS(ui.Files, "html/pages/index.tmpl")
 	if err != nil {
 		app.errorLog.Print(err.Error())
@@ -47,15 +46,10 @@ func main() {
 		errorLog: errorLog,
 	}
 
-	//mux := http.NewServeMux()
-	//fileServer := http.FileServer(http.Dir("./ui/static/"))
-
 	fileServer := http.FileServer(http.FS(ui.Files))
 	router.Handler(http.MethodGet, "/static/*filepath", fileServer)
 
 	router.HandlerFunc(http.MethodGet, "/", app.home)
-
-	//mux.Handle("/static/", http.StripPrefix("/static", fileServer))
 
 	infoLog.Print("Starting server on :4000")
 	err := http.ListenAndServe(":4000", router)
