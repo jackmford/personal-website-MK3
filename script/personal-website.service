@@ -1,0 +1,11 @@
+[Unit]
+Description=personal-website
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5s
+ExecStart=personal-website
+
+[Install]
+WantedBy=multi-user.target

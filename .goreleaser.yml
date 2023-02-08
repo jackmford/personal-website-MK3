@@ -4,3 +4,18 @@ builds:
       - linux
     goarch:
       - amd64
+
+nfpms:
+  - package_name: personal-website-MK3
+    file_name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
+    homepage: https://github.com/jackmford/personal-website-MK3
+    maintainer: Jack Fordyce
+    description: Personal Website
+    license: MIT
+    formats:
+      - deb
+    bindir: /usr/bin
+    contents:
+      - src: script/personal-website.service
+        dst: /lib/systemd/system/personal-website.service
+        type: config
