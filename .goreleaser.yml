@@ -1,2 +1,6 @@
 builds:
-- main: ./cmd/web/main.go
+  - main: ./cmd/web/main.go
+    goos:
+      - linux
+    goarch:
+      - amd64
