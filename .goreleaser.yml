@@ -6,7 +6,7 @@ builds:
       - amd64
 
 nfpms:
-  - package_name: personal-website-MK3
+  - package_name: personal-website
     file_name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
     homepage: https://github.com/jackmford/personal-website-MK3
     maintainer: Jack Fordyce
