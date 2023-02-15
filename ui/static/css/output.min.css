@@ -522,6 +522,10 @@ video {
   margin-top: 6rem;
 }
 
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
 .block {
   display: block;
 }
@@ -538,6 +542,14 @@ video {
   height: 10rem;
 }
 
+.h-8 {
+  height: 2rem;
+}
+
+.w-10 {
+  width: 2.5rem;
+}
+
 .w-40 {
   width: 10rem;
 }
@@ -552,6 +564,11 @@ video {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.gap-x-2 {
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
 }
 
 .border-2 {
