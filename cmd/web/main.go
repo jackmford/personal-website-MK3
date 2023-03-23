@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/julienschmidt/httprouter"
+	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"jackmitchellfordyce.com/ui"
 )
@@ -16,7 +17,22 @@ type application struct {
 	errorLog *log.Logger
 }
 
+var successCounter = prometheus.NewCounter(
+	prometheus.CounterOpts{
+		Name: "home_success_request_count",
+		Help: "No of requests handled successfully by home handler",
+	},
+)
+
+var totalCounter = prometheus.NewCounter(
+	prometheus.CounterOpts{
+		Name: "home_total_request_count",
+		Help: "No of request handled by home handler",
+	},
+)
+
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
+	totalCounter.Inc()
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
 		return
@@ -33,7 +49,9 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		app.errorLog.Print(err.Error())
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+		return
 	}
+	successCounter.Inc()
 }
 
 func main() {
@@ -51,6 +69,9 @@ func main() {
 	router.Handler(http.MethodGet, "/static/*filepath", fileServer)
 
 	router.HandlerFunc(http.MethodGet, "/", app.home)
+
+	prometheus.MustRegister(totalCounter)
+	prometheus.MustRegister(successCounter)
 	router.Handler(http.MethodGet, "/metrics", promhttp.Handler())
 
 	infoLog.Print("Starting server on :4000")
