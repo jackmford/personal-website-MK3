@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/julienschmidt/httprouter"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"jackmitchellfordyce.com/ui"
 )
 
@@ -50,6 +51,7 @@ func main() {
 	router.Handler(http.MethodGet, "/static/*filepath", fileServer)
 
 	router.HandlerFunc(http.MethodGet, "/", app.home)
+	router.Handler(http.MethodGet, "/metrics", promhttp.Handler())
 
 	infoLog.Print("Starting server on :4000")
 	err := http.ListenAndServe(":4000", router)
