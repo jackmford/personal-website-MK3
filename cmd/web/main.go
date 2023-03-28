@@ -31,6 +31,10 @@ var totalCounter = prometheus.NewCounter(
 	},
 )
 
+func health(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Healthy"))
+}
+
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	totalCounter.Inc()
 	if r.URL.Path != "/" {
@@ -69,6 +73,7 @@ func main() {
 	router.Handler(http.MethodGet, "/static/*filepath", fileServer)
 
 	router.HandlerFunc(http.MethodGet, "/", app.home)
+	router.HandlerFunc(http.MethodGet, "/health", health)
 
 	prometheus.MustRegister(totalCounter)
 	prometheus.MustRegister(successCounter)
