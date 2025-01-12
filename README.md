@@ -1,4 +1,6 @@
 # personal-website-MK3
 Let's remake this website in Golang
 
-Golang, TailwindCSS, Digital Ocean, Caddy
+[jackmitchellfordyce.com](https://jackmitchellfordyce.com)
+
+Golang, Digital Ocean, Caddy, TF, Ansible
