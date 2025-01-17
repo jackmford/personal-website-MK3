@@ -14,12 +14,18 @@ body {
     text-align: left;
     border: 8px solid #b8b6b0;
     background: #d4d4d4;
-    width: 640px;
+    width: 50%;
     position: relative;
     box-shadow: 0 0 20px 0 #8f8d89;
     border-radius: 12px;
 }
 
+@media (max-width: 768px) {
+    .container {
+        width: 75%;
+  }
+}
+ 
 .title-bar {
     background-color: #c3c3c3;
     color: black;
@@ -49,6 +55,7 @@ body {
 
 a {
     color: #0055a5;
+    width: max-content;
     text-decoration: none;
     font-size: 1rem;
     display: block;
