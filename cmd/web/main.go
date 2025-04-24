@@ -69,11 +69,8 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) blog(w http.ResponseWriter, r *http.Request) {
-	ts, err := template.New("blog.tmpl").Funcs(template.FuncMap{
-		"safeHTML": func(s string) template.HTML {
-			return template.HTML(s)
-		},
-	}).ParseFS(ui.Files, "html/pages/blog.tmpl")
+
+	ts, err := template.ParseFS(ui.Files, "html/pages/blog.tmpl")
 	if err != nil {
 		app.errorLog.Print(err.Error())
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
