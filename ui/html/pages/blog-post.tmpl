@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Post.Title}} - Jack Mitchell Fordyce</title>
+    <link rel='icon' href='/static/img/cartoonprof.png' type='image/x-icon'>
+    <link rel='stylesheet' href='/static/css/index.css'>
+</head>
+<body>
+    <div class="container">
+        <div class="title-bar">
+            <div class="buttons">
+                <div class="button"></div>
+                <div class="button yellow"></div>
+                <div class="button green"></div>
+            </div>
+            <span>Blog - Jack Mitchell Fordyce</span>
+        </div>
+        <div class="window-content">
+            <article class="blog-post">
+                <h1>{{.Post.Title}}</h1>
+                <div class="post-meta">{{.Post.Date.Format "January 2, 2006"}}</div>
+                <div class="post-content">
+                    {{.Post.Content | safeHTML}}
+                </div>
+            </article>
+            <div class="footer">
+                <a href="/blog">← Back to Blog</a>
+                <p>&copy; 2025 | Built with nostalgia</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
