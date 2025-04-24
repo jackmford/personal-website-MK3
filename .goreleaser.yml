@@ -1,4 +1,4 @@
-project_name: personal-website
+project_name: personal-website-MK3
 before:
   hooks:
     - go mod tidy
