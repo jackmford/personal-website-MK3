@@ -16,7 +16,7 @@ all: build
 build: tidy $(GO_FILES) $(TEMPLATE_FILES) $(STATIC_FILES)
 	@echo "Building $(APP_NAME) version $(VERSION)..."
 	@mkdir -p $(BUILD_DIR)
-	go build -ldflags "-X main.version=$(VERSION)" -o $(BUILD_DIR)/$(APP_NAME) ./cmd/web/main.go
+	go build -ldflags "-X main.version=$(VERSION)" -o $(BUILD_DIR)/$(APP_NAME) ./cmd/web/
 	@echo "Build complete. Binary located at $(BUILD_DIR)/$(APP_NAME)."
 
 run: build
