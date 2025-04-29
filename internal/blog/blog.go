@@ -18,6 +18,7 @@ type frontmatter struct {
     Title string    `yaml:"title"`
     Date  string    `yaml:"date"`
     Slug  string    `yaml:"slug"`
+    Blurb string    `yaml:"blurb"`
 }
 
 var (
@@ -80,7 +81,7 @@ func loadPosts() (models.BlogPosts, error) {
         }
 
         // Get preview (first paragraph)
-        preview := strings.Split(string(parts[2]), "\n\n")[0]
+        preview := fm.Blurb
         if len(preview) > 150 {
             preview = preview[:150] + "..."
         }
