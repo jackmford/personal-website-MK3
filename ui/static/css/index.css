@@ -142,6 +142,7 @@ a:hover {
     color: #222222;
     text-decoration: none;
     transition: color 0.2s;
+    margin: 0;
 }
 
 .blog-post-preview h2 a:hover {
@@ -151,7 +152,7 @@ a:hover {
 .post-meta {
     color: #666;
     font-size: 0.9rem;
-    margin: 0 0 8px 0;
+    margin: 8px 0 8px 0;
 }
 
 .post-preview {
@@ -164,6 +165,7 @@ a:hover {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-style: italic;
 }
 
 .read-more {

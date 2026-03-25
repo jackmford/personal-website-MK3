@@ -23,8 +23,8 @@
                 {{range .Posts}}
                 <article class="blog-post-preview">
                     <h2><a href="/blog/{{.Slug}}">{{.Title}}</a></h2>
-                    <div class="post-meta">{{.Date.Format "January 2, 2006"}}</div>
                     <p class="post-preview">{{.Preview}}</p>
+                    <div class="post-meta">{{.Date.Format "January 2, 2006"}}</div>
                 </article>
                 {{end}}
             </div>

@@ -20,6 +20,7 @@
         <div class="window-content">
             <article class="blog-post">
                 <h1>{{.Post.Title}}</h1>
+                <p><em>{{.Post.Preview}}</em></p>
                 <div class="post-meta">{{.Post.Date.Format "January 2, 2006"}}</div>
                 <div class="post-content">
                     {{.Post.Content | safeHTML}}
