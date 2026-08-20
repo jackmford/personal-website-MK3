@@ -39,14 +39,10 @@ matter when the application starts.
    Linux `.deb` package.
 
 3. In the separate `ansible` repository, set
-   `roles/personal-website/defaults/main.yml` to that tag and run:
-
-   ```sh
-   ansible-playbook playbooks/personal_website.yml -u <ssh-user>
-   ```
-
-   The playbook installs the release package and restarts the
-   `personal-website` systemd service behind Caddy.
+   `roles/personal-website/defaults/main.yml` to that tag. The full
+   `personal_website.yml` playbook is for server provisioning and also needs
+   the `community.general` collection. For a routine package rollout, install
+   the package and restart the service directly.
 
    The current Ubuntu 20.04 server uses Python 3.8. If the installed Ansible
    version no longer supports it, use a temporary Ansible Core 2.17 runner for
