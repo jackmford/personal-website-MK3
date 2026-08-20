@@ -39,18 +39,10 @@ matter when the application starts.
    Linux `.deb` package.
 
 3. In the separate `ansible` repository, set
-   `roles/personal-website/defaults/main.yml` to that tag. The full
-   `personal_website.yml` playbook is for server provisioning and also needs
-   the `community.general` collection. For a routine package rollout, install
-   the package and restart the service directly.
-
-   The current Ubuntu 20.04 server uses Python 3.8. If the installed Ansible
-   version no longer supports it, use a temporary Ansible Core 2.17 runner for
-   the package-only rollout:
+   `roles/personal-website/defaults/main.yml` to that tag and run:
 
    ```sh
-   uvx --python python3.12 --from 'ansible-core==2.17.12' ansible personal_website -u root -m ansible.builtin.apt -a 'deb=https://github.com/jackmford/personal-website-MK3/releases/download/<tag>/personal-website-MK3_linux_amd64.deb'
-   uvx --python python3.12 --from 'ansible-core==2.17.12' ansible personal_website -u root -m ansible.builtin.systemd -a 'name=personal-website state=restarted enabled=yes daemon_reload=yes'
+   ansible-playbook playbooks/personal_website.yml -u root
    ```
 
 ### Verify production
