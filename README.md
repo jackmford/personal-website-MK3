@@ -38,11 +38,10 @@ matter when the application starts.
    The tag-triggered GitHub Actions workflow tests the app and publishes a
    Linux `.deb` package.
 
-3. In the separate `ansible` repository, set
-   `roles/personal-website/defaults/main.yml` to that tag and run:
+3. In the separate `ansible` repository, run:
 
    ```sh
-   ansible-playbook playbooks/personal_website.yml -u root
+   uv run --python 3.12 --with-requirements requirements.txt ansible-playbook playbooks/deploy_personal_website.yml -u root -e version=v3.0.6
    ```
 
 ### Verify production
