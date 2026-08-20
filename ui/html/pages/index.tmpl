@@ -6,10 +6,9 @@
     <title>Jack Mitchell Fordyce</title>
     <link rel='icon' href='/static/img/cartoonprof.png' type='image/png'>
     <link rel='stylesheet' href='/static/css/index.css'>
-    <style>
-    </style>
 </head>
 <body>
+    <a class="skip-link" href="#content">Skip to content</a>
     <div class="container">
         <div class="title-bar">
             <div class="buttons">
@@ -19,20 +18,27 @@
             </div>
             <span>Jack Mitchell Fordyce</span>
         </div>
-        <div class="window-content">
-            <h1>Find What I'm Working On!</h1>
-            <a href="https://becomingreliable.substack.com/" target="_blank">Substack</a>
-            <a href="https://github.com/jackmford" target="_blank">GitHub</a>
-            <a href="https://linkedin.com/in/jackmitchellfordyce" target="_blank">LinkedIn</a>
-            <a href="/static/img/resume.pdf" target="_blank">Resume</a>
-            <a href="/blog">Blog</a>
-            <div class="contact">
-                <h2>Get in Touch</h2>
-                <p>Feel free to reach out to me via email</p>
-                <a href="mailto:jackmitchellfordyce@gmail.com">jackmitchellfordyce@gmail.com</a>
-            </div>
-            <div class="footer">&copy; 2025 | Built with nostalgia</div>
-        </div>
+        <main class="window-content" id="content">
+            <h1>A home for my blog, projects, and the things I am learning along the way.</h1>
+
+            <section aria-labelledby="find-me">
+                <h2 id="find-me">Find me online</h2>
+                <div class="link-grid">
+                    <a class="link-card" href="/blog"><span>Notes</span><strong>Read the blog</strong></a>
+                    <a class="link-card" href="/static/img/resume.pdf" target="_blank" rel="noopener noreferrer"><span>Experience</span><strong>Resume</strong></a>
+                    <a class="link-card" href="https://becomingreliable.substack.com/" target="_blank" rel="noopener noreferrer"><span>Newsletter</span><strong>Becoming Reliable</strong></a>
+                    <a class="link-card" href="https://github.com/jackmford" target="_blank" rel="noopener noreferrer"><span>Code</span><strong>GitHub</strong></a>
+                    <a class="link-card" href="https://linkedin.com/in/jackmitchellfordyce" target="_blank" rel="noopener noreferrer"><span>Professional</span><strong>LinkedIn</strong></a>
+                </div>
+            </section>
+
+            <section class="contact" aria-labelledby="contact">
+                <h2 id="contact">Say Hello</h2>
+                <a class="email-link" href="mailto:jackmitchellfordyce@gmail.com">jackmitchellfordyce@gmail.com</a>
+            </section>
+        </main>
+        <footer class="footer">&copy; 2026 Jack Mitchell Fordyce <span aria-hidden="true">/</span> Built with nostalgia</footer>
     </div>
+    <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "77f2e75dd46d4bc0bcbbf4a09ee7549e"}'></script>
 </body>
 </html>

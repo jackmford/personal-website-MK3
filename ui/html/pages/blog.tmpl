@@ -8,6 +8,7 @@
     <link rel='stylesheet' href='/static/css/index.css'>
 </head>
 <body>
+    <a class="skip-link" href="#content">Skip to content</a>
     <div class="container">
         <div class="title-bar">
             <div class="buttons">
@@ -17,22 +18,20 @@
             </div>
             <span>Blog - Jack Mitchell Fordyce</span>
         </div>
-        <div class="window-content">
-            <h1>Blog Posts</h1>
-            <div class="blog-posts">
+        <main class="window-content" id="content">
+            <a class="back-link" href="/">&larr; Home</a>
+            <div class="blog-posts" aria-label="Blog posts">
                 {{range .Posts}}
                 <article class="blog-post-preview">
-                    <h2><a href="/blog/{{.Slug}}">{{.Title}}</a></h2>
+                    <div class="post-meta"><time datetime="{{.Date.Format "2006-01-02"}}">{{.Date.Format "January 2, 2006"}}</time></div>
+                    <h2><a href="/blog/{{.Slug}}">{{.Title}} <span aria-hidden="true">&rarr;</span></a></h2>
                     <p class="post-preview">{{.Preview}}</p>
-                    <div class="post-meta">{{.Date.Format "January 2, 2006"}}</div>
                 </article>
                 {{end}}
             </div>
-            <div class="footer">
-                <a href="/">← Back to Home</a>
-                <p>&copy; 2025 | Built with nostalgia</p>
-            </div>
-        </div>
+        </main>
+        <footer class="footer"><a href="/">&larr; Back to home</a><span>&copy; 2026 Jack Mitchell Fordyce</span></footer>
     </div>
+    <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "77f2e75dd46d4bc0bcbbf4a09ee7549e"}'></script>
 </body>
 </html> 
