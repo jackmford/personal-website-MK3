@@ -48,6 +48,15 @@ matter when the application starts.
    The playbook installs the release package and restarts the
    `personal-website` systemd service behind Caddy.
 
+   The current Ubuntu 20.04 server uses Python 3.8. If the installed Ansible
+   version no longer supports it, use a temporary Ansible Core 2.17 runner for
+   the package-only rollout:
+
+   ```sh
+   uvx --python python3.12 --from 'ansible-core==2.17.12' ansible personal_website -u root -m ansible.builtin.apt -a 'deb=https://github.com/jackmford/personal-website-MK3/releases/download/<tag>/personal-website-MK3_linux_amd64.deb'
+   uvx --python python3.12 --from 'ansible-core==2.17.12' ansible personal_website -u root -m ansible.builtin.systemd -a 'name=personal-website state=restarted enabled=yes daemon_reload=yes'
+   ```
+
 ### Verify production
 
 ```sh
