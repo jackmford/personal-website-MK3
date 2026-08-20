@@ -8,6 +8,7 @@
     <link rel='stylesheet' href='/static/css/index.css'>
 </head>
 <body>
+    <a class="skip-link" href="#content">Skip to content</a>
     <div class="container">
         <div class="title-bar">
             <div class="buttons">
@@ -17,20 +18,20 @@
             </div>
             <span>Blog - Jack Mitchell Fordyce</span>
         </div>
-        <div class="window-content">
+        <main class="window-content" id="content">
             <article class="blog-post">
+                <a class="back-link" href="/blog">&larr; All blog posts</a>
+                <p class="eyebrow">Article</p>
                 <h1>{{.Post.Title}}</h1>
-                <p><em>{{.Post.Preview}}</em></p>
-                <div class="post-meta">{{.Post.Date.Format "January 2, 2006"}}</div>
+                <p class="post-dek">{{.Post.Preview}}</p>
+                <div class="post-meta"><time datetime="{{.Post.Date.Format "2006-01-02"}}">{{.Post.Date.Format "January 2, 2006"}}</time></div>
                 <div class="post-content">
                     {{.Post.Content | safeHTML}}
                 </div>
             </article>
-            <div class="footer">
-                <a href="/blog">← Back to Blog</a>
-                <p>&copy; 2025 | Built with nostalgia</p>
-            </div>
-        </div>
+        </main>
+        <footer class="footer"><a href="/blog">&larr; All blog posts</a><a href="/">Home</a><span>&copy; 2026 Jack Mitchell Fordyce</span></footer>
     </div>
+    <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "77f2e75dd46d4bc0bcbbf4a09ee7549e"}'></script>
 </body>
 </html> 
