@@ -89,6 +89,9 @@ section { margin-top: clamp(3rem, 8vw, 5rem); }
 .blog-post-preview h2 a { color: #17211d; text-decoration: none; }
 .blog-post-preview h2 a:hover { color: #075f73; }
 .post-preview { margin: 0.65rem 0 0; color: #4a534d; line-height: 1.65; }
+.til-posts { margin-top: 2.5rem; }
+.til-content { margin-top: 0.75rem; font-size: 1rem; line-height: 1.6; }
+.til-content > :last-child { margin-bottom: 0; }
 
 .back-link { display: inline-block; margin-bottom: 2.5rem; font-size: 0.85rem; font-weight: 700; }
 .blog-post h1 { max-width: 18ch; }

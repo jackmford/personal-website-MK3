@@ -16,11 +16,13 @@ import (
 type application struct {
 	infoLog  *log.Logger
 	errorLog *log.Logger
+	tils     *tilFeed
 }
 
 type templateData struct {
 	Posts models.BlogPosts
 	Post  *models.BlogPost
+	TILs  []tilPost
 }
 
 var successCounter = prometheus.NewCounter(
@@ -45,6 +47,7 @@ func main() {
 	app := &application{
 		infoLog:  infoLog,
 		errorLog: errorLog,
+		tils:     newTILFeed(),
 	}
 
 	// Create sub-filesystems for different types of static files
@@ -69,6 +72,7 @@ func main() {
 	router.HandlerFunc(http.MethodGet, "/", app.home)
 	router.HandlerFunc(http.MethodGet, "/blog", app.blog)
 	router.HandlerFunc(http.MethodGet, "/blog/:slug", app.blogPost)
+	router.HandlerFunc(http.MethodGet, "/til", app.til)
 	router.HandlerFunc(http.MethodGet, "/health", health)
 
 	prometheus.MustRegister(totalCounter)

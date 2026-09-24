@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Today I Learned - Jack Mitchell Fordyce</title>
+    <link rel='icon' href='/static/img/cartoonprof.png' type='image/x-icon'>
+    <link rel='stylesheet' href='/static/css/index.css'>
+</head>
+<body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <div class="container">
+        <div class="title-bar">
+            <div class="buttons">
+                <div class="button"></div>
+                <div class="button yellow"></div>
+                <div class="button green"></div>
+            </div>
+            <span>Today I Learned - Jack Mitchell Fordyce</span>
+        </div>
+        <main class="window-content" id="content">
+            <a class="back-link" href="/">&larr; Home</a>
+            <p class="eyebrow">Today I Learned</p>
+            <h1>Small things worth remembering.</h1>
+            <div class="blog-posts til-posts" aria-label="Today I learned posts">
+                {{range .TILs}}
+                <article class="blog-post-preview">
+                    <div class="post-meta"><time datetime="{{.Published.Format "2006-01-02T15:04:05Z07:00"}}">{{.Published.Format "January 2, 2006"}}</time></div>
+                    <h2>{{.Title}}</h2>
+                    <div class="post-content til-content">{{.Content}}</div>
+                </article>
+                {{else}}
+                <p class="post-preview">Nothing here yet.</p>
+                {{end}}
+            </div>
+        </main>
+        <footer class="footer"><a href="/">&larr; Home</a><span>&copy; 2026 Jack Mitchell Fordyce</span></footer>
+    </div>
+    <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "77f2e75dd46d4bc0bcbbf4a09ee7549e"}'></script>
+</body>
+</html>

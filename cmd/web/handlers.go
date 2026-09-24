@@ -57,7 +57,28 @@ func (app *application) blog(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func (app *application) til(w http.ResponseWriter, r *http.Request) {
+	posts, err := app.tils.get(r.Context())
+	if err != nil && len(posts) == 0 {
+		app.errorLog.Print(err)
+		http.Error(w, http.StatusText(http.StatusServiceUnavailable), http.StatusServiceUnavailable)
+		return
+	}
+	if err != nil {
+		app.errorLog.Print(err)
+	}
 
+	ts, err := template.ParseFS(ui.Files, "html/pages/til.tmpl")
+	if err != nil {
+		app.errorLog.Print(err.Error())
+		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+		return
+	}
+	if err := ts.Execute(w, templateData{TILs: posts}); err != nil {
+		app.errorLog.Print(err.Error())
+		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+	}
+}
 
 func (app *application) blogPost(w http.ResponseWriter, r *http.Request) {
 	params := httprouter.ParamsFromContext(r.Context())
@@ -91,4 +112,3 @@ func (app *application) blogPost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
-
